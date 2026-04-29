@@ -447,6 +447,14 @@ function syncSkillPages(skillIndex) {
       (_match, refPath) => `[references/${refPath}](${GITHUB_BLOB}/skills/${dir}/references/${refPath})`,
     );
 
+    // Strip the canonical documentation backlink: it exists in the source SKILL.md
+    // so aggregators (skills.sh, etc.) carry a link back to the docs site, but on
+    // the docs site itself the link points at the page rendering it. Self-link.
+    body = body.replace(
+      /\n+\[Documentation\]\(https:\/\/jeffallan\.github\.io\/claude-skills\/skills\/[^)]+\)\s*$/,
+      '',
+    );
+
     body = rewriteLinks(body);
 
     // Assemble frontmatter (branded title + description for SEO, skills only)
