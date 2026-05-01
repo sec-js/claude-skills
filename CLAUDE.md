@@ -229,12 +229,14 @@ Add version comparison link at bottom:
 - Update any cross-references
 - Update SKILLS_GUIDE.md if triggers changed
 
-### 4. Generate Social Preview
+### 4. Generate Social Preview (conditional)
 
-After all updates, regenerate the social preview image:
+The social preview embeds skill, workflow, and reference counts but **not** the version. Only regenerate when at least one of `skillCount`, `workflowCount`, or `referenceFileCount` in `version.json` changed in this release — patch releases that only fix docs or a single skill normally do not need it.
+
+When regeneration is needed:
 
 ```bash
-npm install --no-save puppeteer && node ./assets/capture-screenshot.js
+npx -y -p puppeteer node ./assets/capture-screenshot.js
 ```
 
 This creates `assets/social-preview.png` from `assets/social-preview.html`.

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.14] - 2026-05-01
+
+### Fixed
+- `postgres-pro` reference docs: corrected invalid column references in `pg_stat_user_tables` and `pg_stat_user_indexes` query examples (`tablename` → `relname`, `indexname` → `indexrelname`) so the snippets actually run. Hardened identifier assembly with `format('%I.%I', schemaname, relname)` for safety against quoted/case-sensitive identifiers. Clarified the `VACUUM FREEZE` comment to note it operates on the current database, not the entire cluster (#191)
+
+### Contributors
+- @sobstel — Fix invalid `pg_stat_*` column references and `VACUUM FREEZE` scope comment in `postgres-pro` references (#191)
+
 ## [0.4.13] - 2026-04-28
 
 ### Added
@@ -442,6 +450,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Monitoring: Prometheus, Grafana, ELK, DataDog
 - Security: OWASP Top 10, SAST tools
 
+[0.4.14]: https://github.com/jeffallan/claude-skills/compare/v0.4.13...v0.4.14
 [0.4.13]: https://github.com/jeffallan/claude-skills/compare/v0.4.12...v0.4.13
 [0.4.12]: https://github.com/jeffallan/claude-skills/compare/v0.4.11...v0.4.12
 [0.4.11]: https://github.com/jeffallan/claude-skills/compare/v0.4.10...v0.4.11
