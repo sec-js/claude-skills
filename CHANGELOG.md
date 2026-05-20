@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.15] - 2026-05-20
+
+### Fixed
+- `commands/project/execution/complete-ticket.md`: corrected YAML frontmatter that failed strict parsing in oh-my-pi and the GitHub renderer. Two issues: unquoted double quotes around `"In Review"` were interpreted as a quoted-string opener with trailing junk, and `argument-hint: [ticket-key] (optional...)` led with `[` which opens a flow-style sequence and then failed on the prose tail. Wrapped both values in matching outer quotes (#193)
+
+### Added
+- `CommandFrontmatterChecker` in `scripts/validate-skills.py`: strict-parses YAML frontmatter on every `commands/**/*.md` with PyYAML (no fallback to the lenient simple parser, which had been masking these bugs). Runs as part of the workflow validation pass.
+
+### Contributors
+- @rlex — Reported broken YAML frontmatter in `complete-ticket.md` after the `0.4.14` release surfaced the parse error in oh-my-pi (#193)
+
 ## [0.4.14] - 2026-05-01
 
 ### Fixed
@@ -450,6 +461,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Monitoring: Prometheus, Grafana, ELK, DataDog
 - Security: OWASP Top 10, SAST tools
 
+[0.4.15]: https://github.com/jeffallan/claude-skills/compare/v0.4.14...v0.4.15
 [0.4.14]: https://github.com/jeffallan/claude-skills/compare/v0.4.13...v0.4.14
 [0.4.13]: https://github.com/jeffallan/claude-skills/compare/v0.4.12...v0.4.13
 [0.4.12]: https://github.com/jeffallan/claude-skills/compare/v0.4.11...v0.4.12
